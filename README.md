@@ -11,7 +11,7 @@ heap-based approach, which matters since cancel rates are typically much
 higher than fill rates in real markets.
 
 ## Results
-- Benchmarked at ~1.33 million orders/second (single-threaded, -O2, [your CPU model if you know it])
+- Benchmarked at ~1.33 million orders/second (single-threaded, -O2, i5-1235U)
 - 5 passing tests covering full match, partial match, price-time priority,
   no-cross scenarios, and cancellation
 
