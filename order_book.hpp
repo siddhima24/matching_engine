@@ -10,6 +10,11 @@ class OrderBook {
 public:
     std::vector<Trade> addOrder(Order order);
     bool cancelOrder(uint64_t order_id);
+    struct Snapshot {
+    std::vector<std::pair<double,int>> bids;
+    std::vector<std::pair<double,int>> asks;
+    };
+    Snapshot getSnapshot(int depth) const;
 
 private:
     struct Location { Side side; double price; };

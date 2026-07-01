@@ -57,3 +57,20 @@ bool OrderBook::cancelOrder(uint64_t order_id) {
     index_.erase(it);
     return true;
 }
+
+OrderBook::Snapshot OrderBook::getSnapshot(int depth) const {
+    Snapshot snap;
+    int count = 0;
+    for (auto it = bids_.rbegin(); it != bids_.rend() && count < depth; ++it, ++count) {
+        int qty = 0;
+        for (auto& o : it->second) qty += o.quantity;
+        snap.bids.push_back({it->first, qty});
+    }
+    count = 0;
+    for (auto it = asks_.begin(); it != asks_.end() && count < depth; ++it, ++count) {
+        int qty = 0;
+        for (auto& o : it->second) qty += o.quantity;
+        snap.asks.push_back({it->first, qty});
+    }
+    return snap;
+}
